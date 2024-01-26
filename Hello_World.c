@@ -74,6 +74,8 @@ int consulta()
 	if(file == NULL)
 	{
 		printf("Não foi possivel abrir o arquivo, não localizado!. \n");
+		system("pause");
+		return; // return; // Adicionado o return para evitar continuar a execução do código
 	}
 
 	while(fgets(conteudo, 200, file) != NULL)
@@ -112,52 +114,80 @@ int deletar()
 
 int main()
 	{
+		setlocale(LC_ALL, "Portuguese");
 	int opcao=0; //Definindo as variáveis	
 	int laco=1;	
-
-	for(laco=1;laco==1;)
+	char login[30]="b";
+	char senhadigitada[20]="a";
+	int comparacao;
+	
+	printf("### Cartório da EBAC ###\n\n");
+	printf("\nLogin de administrador !\nDigite  seu login: \n\n");
+	scanf("%s" ,login);
+	printf("\n\nLogin de administrador !\nDigite a sua senha: \n\n");
+	scanf("%s", senhadigitada);
+	
+	if(strcmp(login, "admin1") == 0) //usei o comando strcmp que é diferente do curso por conta dos limites do array (li sobre em uma correção do meu codigo)
 	{
+ 
+		comparacao = strcmp(senhadigitada, "admin");
 		
-		system("cls");		
+		if (comparacao == 0)
 		
-		setlocale(LC_ALL, "Portuguese"); //Definindo a Linguagem 
-	
-		printf("### Cartório da EBAC ###\n\n"); //Início do menu
-		printf("Escolha a opção desejada do menu:\n\n");
-		printf("\t1 - Registrar nomes\n");
-		printf("\t2 - Consultar nomes\n");
-		printf("\t3 - Deletar nomes\n\n"); 
-		printf("\t4 - sair do sistema\n\n");
-		printf("Opção: "); //Fim do menu 
-
-		scanf("%d", &opcao); //Armazenando a escolha do Usuário
-	
-		system("cls");
-	
-		switch(opcao)
 		{
-			case 1:
-			resgistro();
-			break;
+	
+			system ("cls");
+			for (laco = 1; laco != 0; )
+			{
 			
-			case 2:
-			consulta();
-			break;
+				system("cls");		
+		
+				setlocale(LC_ALL, "Portuguese"); //Definindo a Linguagem 
+	
+				printf("### Cartório da EBAC ###\n\n"); //Início do menu
+				printf("Escolha a opção desejada do menu:\n\n");
+				printf("\t1 - Registrar nomes\n");
+				printf("\t2 - Consultar nomes\n");
+				printf("\t3 - Deletar nomes\n\n"); 
+				printf("\t4 - sair do sistema\n\n");
+				printf("Opção: "); //Fim do menu 
+
+				scanf("%d", &opcao); //Armazenando a escolha do Usuário
+	
+					system("cls");
+		
+				switch(opcao)
+				{
+					case 1:
+					resgistro();
+					break;
+					
+					case 2:
+					consulta();
+					break;
 			
-			case 3:
-			deletar();
-			break;
+					case 3:
+					deletar();
+					break;
+				
+					case 4:
+					printf("Obrigado por utilizar o sistema!\n");
+					return 0;
+					break;
+				
+					default:
+					printf("Essa opção não está disponivel!\n");
+					system("pause");
+					break;
 			
-			case 4:
-			printf("Obrigado por utilizar o sistema!\n");
-			return 0;
-			break;
-			
-			default:
-			printf("Essa opção não está disponivel!\n");
-			system("pause");
-			break;
-			
-		} //fim da seleção
+				} //fim da seleção
+			}
+ 	
+		}
+			else
+				printf("Senha incorreta");
+				
 	}
+		else
+				printf("login incorreto");					
 }
